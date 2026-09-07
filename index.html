@@ -12,35 +12,22 @@
     <link rel="apple-touch-icon" href="./icon-192.png" />
     <title>資產光譜 · 淨值與現金流記帳</title>
     <style>
-      /* html/body are pinned to the viewport and never scroll themselves —
-         the app's own inner containers (see outerStyle/App.jsx) own scrolling.
-         This keeps html/body height out of the picture; the actual pixel
-         height used for layout is supplied by JS in App.jsx
-         (useAppViewportHeight), which is what fixes the iOS "加入主畫面"
-         standalone-launch height bug that 100vh/100dvh alone can't fix. */
-      html, body, #root { height: 100%; overflow: hidden; }
-      html {
-        /* fallback chain, old -> new, in case JS hasn't run yet */
-        height: 100vh;
-        height: 100svh;
-        height: 100dvh;
-      }
+      html, body, #root { height: 100%; }
       body {
         margin: 0;
         background: #070911;
         display: flex;
         justify-content: center;
-        overscroll-behavior: none;
-        -webkit-text-size-adjust: 100%;
+        min-height: 100vh;
+        min-height: 100dvh;
       }
       #root {
         width: 100%;
         display: flex;
         align-items: stretch;
-        overflow: hidden;
       }
     </style>
-    <script type="module" crossorigin src="/asset-spectrum/assets/index-Bq27VFqQ.js"></script>
+    <script type="module" crossorigin src="/asset-spectrum/assets/index-DDRwFJBc.js"></script>
   <link rel="manifest" href="/asset-spectrum/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/asset-spectrum/registerSW.js"></script></head>
   <body>
     <div id="root"></div>
