@@ -12,14 +12,22 @@
     <link rel="apple-touch-icon" href="./icon-192.png" />
     <title>資產光譜 · 淨值與現金流記帳</title>
     <style>
+      /* html/body 維持可以有一點點彈性 overscroll（不要 overflow:hidden 鎖死），
+         這是讓 App.jsx 裡 useStandaloneReflowNudge()（以及使用者手動滑動）
+         能夠觸發 WebKit 重新計算版面高度的關鍵。真正的內容捲動仍然是由
+         App 內層的 overflowY:auto 容器負責，不是靠 html/body 捲動。 */
       html, body, #root { height: 100%; }
+      html {
+        height: 100vh;
+        height: 100svh;
+        height: 100dvh;
+      }
       body {
         margin: 0;
         background: #070911;
         display: flex;
         justify-content: center;
-        min-height: 100vh;
-        min-height: 100dvh;
+        -webkit-text-size-adjust: 100%;
       }
       #root {
         width: 100%;
@@ -27,7 +35,7 @@
         align-items: stretch;
       }
     </style>
-    <script type="module" crossorigin src="/asset-spectrum/assets/index-DDRwFJBc.js"></script>
+    <script type="module" crossorigin src="/asset-spectrum/assets/index-CNAj0si0.js"></script>
   <link rel="manifest" href="/asset-spectrum/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/asset-spectrum/registerSW.js"></script></head>
   <body>
     <div id="root"></div>
