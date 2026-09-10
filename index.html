@@ -12,20 +12,15 @@
     <link rel="apple-touch-icon" href="./icon-192.png" />
     <title>資產光譜 · 淨值與現金流記帳</title>
     <style>
-      /* html/body 維持可以有一點點彈性 overscroll（不要 overflow:hidden 鎖死），
-         純粹當作保險：就算使用者不小心在最外層滑動，也不會被鎖死卡住。
-         但這已經不是主要機制——App.jsx 的 useStandaloneReflowNudge() 現在是
-         直接對內層那個 overflowY:auto 的捲動容器做 nudge（見該函式上方註解），
-         真正觸發 WebKit 重新計算版面高度的是那個內層容器的捲動，不是這裡的
-         html/body。 */
-      html, body, #root { height: 100%; }
-      html {
-        height: 100vh;
-        height: 100svh;
-        height: 100dvh;
-      }
+      /* 這裡刻意不把 html/body 鎖死成 height:100vh/svh/dvh。之前那樣寫是為了配合
+         App.jsx 最外層的 position:fixed 容器，但 iOS standalone 剛啟動時
+         WebKit 回報的視窗高度本身常常是錯的（不管用哪個 API 量都一樣），導致
+         那個 fixed 容器撐不滿畫面、底部留白，而且只有真實觸控捲動才能救回來。
+         現在 App.jsx 已經改成不需要知道精確高度的寫法（body 自己用瀏覽器原生
+         捲動，header/nav 用 position:sticky），所以這裡也對應簡化：只設定
+         background 跟置中，不做任何「鎖高度」的事，從根本避開這整類 bug。 */
+      html, body { margin: 0; }
       body {
-        margin: 0;
         background: #070911;
         display: flex;
         justify-content: center;
@@ -33,11 +28,11 @@
       }
       #root {
         width: 100%;
+        min-height: 100dvh;
         display: flex;
-        align-items: stretch;
       }
     </style>
-    <script type="module" crossorigin src="/asset-spectrum/assets/index-pcTyWGCQ.js"></script>
+    <script type="module" crossorigin src="/asset-spectrum/assets/index-DTOPIbSy.js"></script>
   <link rel="manifest" href="/asset-spectrum/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/asset-spectrum/registerSW.js"></script></head>
   <body>
     <div id="root"></div>
